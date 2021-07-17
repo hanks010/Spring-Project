@@ -861,7 +861,7 @@ label.valid:after {
 							
 							<div class="form-group form-button">
 								<input type="submit" name="signin" id="signin"
-									class="form-submit" value="Login">
+									class="form-submit" value="Log in">
 							</div>
 						</form>
 						<div class="social-login">

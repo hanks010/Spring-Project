@@ -3,6 +3,7 @@ package com.example.project05.model.board;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -50,7 +51,7 @@ public class Rboard {
 	@OneToMany(mappedBy = "rboard")
 	private List<RboMat> rbomatlists;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private RboardCategory rbcategory;
 
 	@PrePersist

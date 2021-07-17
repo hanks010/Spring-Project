@@ -519,7 +519,8 @@ label {
 		<br />
 		<h5>레시피 소개</h5>
 		<hr />
-		<form action="/rboard/insert" method="post">
+		<form action="/rboard/insert" id="rboardInsert"
+			onsubmit="insert(event)" method="post">
 			<div class="mb-3 row">
 				<label for="title" class="col-sm-2 col-form-label">레시피 제목</label>
 				<div class="col-sm-10">
@@ -575,16 +576,16 @@ label {
 
 			<select onchange="changed(this.value)"
 				class='form-select form-select-lg mb-3 mr-3 select1' id="select1"
-				aria-label='.form-select-lg'>
+				aria-label='.form-select-lg' name="materialcategory">
 				<option selected>재료 분류</option>
 				<c:forEach items="${matCategorylists}" var='category'>
 					<option value='${category.materialCategoryid}'>${category.categoryName}</option>
 				</c:forEach>
 			</select> <select class='select2 form-select form-select-lg mb-3 mr-3'
-				id="select2" aria-label='.form-select-lg'>
+				id="select2" aria-label='.form-select-lg' name="material">
 				<option selected>재료</option>
 			</select> <select class='form-select form-select-lg mb-3 mr-3' id="select3"
-				aria-label='.form-select-lg'>
+				aria-label='.form-select-lg' name="materialQty">
 				<option selected>수량</option>
 				<c:forEach var='i' begin='1' end='10'>
 					<option value='${i}'>${i}</option>
@@ -601,8 +602,8 @@ label {
 			<hr />
 			<div class="mb-3">
 				<label for="content" class="form-label"></label>
-				<textarea class="form-control" id="content" placeholder="조리법을 입력하세요"
-					rows="3"></textarea>
+				<textarea class="form-control" id="content" name="content"
+					placeholder="조리법을 입력하세요" rows="3"></textarea>
 			</div>
 			<br />
 			<hr />
@@ -616,14 +617,38 @@ label {
 		</form>
 	</div>
 	<script>
+	
+	function insert(e){
+		e.preventDefault();
+		let data = $("#rboardInsert").serialize();
+		console.log(data);
+	
+		$.ajax({
+			type: "POST",
+			url :"/rboard/user/insert",
+			data: data,
+			contentType: "application/x-www-form-urlencoded; charset=utf-8",
+			dataType:"json" 
+		}).done(res=>{
+			alert("성공");
+			console.log("업데이트 성공");
+			location.href = "/";
+		}).fail(error=>{
+			console.log(error);
+		})
+
+	}
+	
+
 		var materialOption = new Array();
 		<c:forEach items="${materiallist}" var ="material">
 		materialOption.push({
-			id : "${material.materialCategory.materialCategoryid}",
+			categoryid : "${material.materialCategory.materialCategoryid}",
+			materialid : "${material.materialid}",
 			name : "${material.materialName}"
 		});
 		</c:forEach>
-
+		
 		function changed(s1Val) {
 
 			$(".select2").html("");
@@ -631,15 +656,16 @@ label {
 			var option = document.createElement("option")
 
 			for (var i = 0; i < materialOption.length; i++) {
-				if (materialOption[i].id == s1Val) {
-					console.log(i, materialOption[i].id);
+				if (materialOption[i].categoryid == s1Val) {
+					console.log(i, materialOption[i].categoryid);
 					console.log(i, materialOption[i].name);
 					option = document.createElement("option")
 					option.innerText = materialOption[i].name;
-					option.value = materialOption[i].name;
+					option.value = materialOption[i].materialid;
 					$(".select2").append(option);
 				}
 			}
+			console.log($(".select2 option:selected").val());
 		}
 
 		$("#btnAdd")
@@ -650,7 +676,7 @@ label {
 							var sel3Val;
 
 							$(".select").html("");
-							var sel1 = "<select onchange='changed2(this.value)' class='form-select form-select-lg mb-3 mr-3 select1'";
+							var sel1 = "<select onchange='changed2(this.value)' class='form-select form-select-lg mb-3 mr-3 s1'";
 							sel1 += "data-mid='1' aria-label='.form-select-lg'>";
 							sel1 += "<option selected>재료 분류</option>";
 							sel1 += "<c:forEach items='${matCategorylists}' var='category'>";
@@ -659,15 +685,15 @@ label {
 
 							$(".select").append(sel1);
 
-							var sel2 = "<select class='select2 form-select form-select-lg mb-3 mr-3'";
-					sel2 += "data-mid='2' aria-label='.form-select-lg'>";
+							var sel2 = "<select class='s2 form-select form-select-lg mb-3 mr-3'";
+							sel2 += "data-mid='2' aria-label='.form-select-lg'>";
 							sel2 += "<option selected>재료</option>";
 							sel2 += "</select>";
 
 							$(".select").append(sel2);
 							sel1Val += 2;
 
-							var sel3 = "<select class='form-select form-select-lg mb-3 mr-3'";
+							var sel3 = "<select class='form-select form-select-lg mb-3 mr-3' s3 ";
 					sel3 +=	"aria-label='.form-select-lg'>";
 							sel3 += "<option selected>수량</option>";
 							sel3 += "<c:forEach var ='i' begin='1' end='10'>";
@@ -678,6 +704,25 @@ label {
 							$(".select").append(sel3);
 
 						})
+						
+						function changed2(s1Val) {
+
+			$(".s2").html("");
+
+			var option = document.createElement("option")
+
+			for (var i = 0; i < materialOption.length; i++) {
+				if (materialOption[i].categoryid == s1Val) {
+					console.log(i, materialOption[i].categoryid);
+					console.log(i, materialOption[i].name);
+					option = document.createElement("option")
+					option.innerText = materialOption[i].name;
+					option.value = materialOption[i].materialid;
+					$(".s2").append(option);
+				}
+			}
+		}
+
 	</script>
 </body>
 </html>

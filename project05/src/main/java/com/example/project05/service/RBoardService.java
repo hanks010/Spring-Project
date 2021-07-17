@@ -53,6 +53,7 @@ public class RBoardService {
 		return categoryRepository.findAll();
 	}
 
+	@Transactional
 	public void RboMatInsert(Rboard rboard, Material material) {
 		RboMat rbomat = new RboMat();
 		rbomat.setMaterial(material);
