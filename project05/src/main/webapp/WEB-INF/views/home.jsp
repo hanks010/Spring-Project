@@ -3,7 +3,10 @@
 <%-- <%@ include file="includes/header.jsp"%> --%>
 <%-- <%@ include file="resources/static/img"%> --%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal" var="principal" />
+</sec:authorize>
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -68,9 +71,16 @@
                                                 <li><a href="elements.html">elements</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="rboard/user/rinsert">Recipe Insert</a></li>
+                                        <sec:authorize access="isAuthenticated()">
+											<li><a href="/rboard/user/insert">Recipe Insert</a></li>
+											<li><a href="/logout">Logout(<sec:authentication
+														property="principal.user.username" />)
+											</a></li>
+										</sec:authorize>
+										<sec:authorize access="isAnonymous()">
                                         <li><a href="/signin">Login</a></li>
                                         <li><a href="/signup">Join Us</a></li>
+                                        </sec:authorize>
                                     </ul>
                                 </nav>
                             </div>
