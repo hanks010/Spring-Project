@@ -1,0 +1,233 @@
+/* 초기화 */
+*{  /*  *은 모든 태그 선택자 */
+    margin: 0;
+    padding: 0;
+    /* 가로세로 길이 기준을 보더박스 기준 */
+    box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+}
+
+.wrap{
+  position: relative;
+  min-height: 100%;
+  padding-bottom: 114px;
+}
+
+.footer{
+  position: absolute;
+  bottom: 0;
+}
+
+body{
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+}
+/* #main-page {
+    background: url(img/chef.png) center center no-repeat;
+    background-size: cover;
+    height: 80vh;
+} */
+.logo-box {
+    position: relative;
+}
+ 
+.logo {
+    width: 120px;
+    height: 70px;
+    
+}
+/* 네브바 */
+.main-navi { 
+    /* 화면 상단에 붙어있는 포지션 */
+    position: sticky;
+    top: 0;
+    background-color:yellowgreen;
+    height: 80px;
+    padding: 0 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* .main-navi .logo{
+    height: 80px;
+    display:block;
+    margin: auto;
+    align-items: center;
+}
+.main-navi .logo i{
+    font-size: 40px;
+    position: relative;
+    top: 7px;
+}
+.main-navi .logo a {
+    text-decoration: none;
+    color: #222;
+    font-size: 1.5rem;
+    font-weight: 900;
+    padding-bottom: 7px;
+} */
+.main-navi .search .btn{
+    height: 48px;
+    width: 300px;
+    border-radius: 30px;
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    background-color: white;
+    outline: none;
+}
+.main-navi .search .btn:hover{
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 15); /* rgba에서 a는 투명도 */
+}
+.main-navi .search .bicon{
+    background-color: yellowgreen;
+    color: white;
+    border-radius: 50%;
+    padding: 7px 9px;
+}
+/* 오른쪽 아이콘 */
+.main-navi .menu {
+    display: flex;
+    justify-content: space-around;
+    width: 250px;
+}
+.main-navi .item .btn{
+    height: 40px;
+    width: 80px;
+    border-radius: 30px;                                      
+  }
+  
+.main-navi .item .btn:hover {
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 15);
+}
+
+#main-page .box {
+    width: 1600px;
+    height: 50px;
+    padding: 7% 80px;
+}
+
+#main-page .box h1{
+    font-size: 60px;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+#main-page .box button {
+    background-color:black;
+    width: 180px;
+    height: 40px;
+    border-radius: 10px;
+    padding: 8px 16px;
+    color: white;
+    font-size: 14px;
+    font-weight: 900;
+    margin-top: 20px;
+}
+/* 첫페이지 끝 */
+
+/* 레시피 best3 */
+section {
+    padding: 0 80px;
+    margin-top: 70px;
+}
+
+#around .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+#around img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+#around h1{
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+#around div{
+    font-size: 18px;
+    font-weight: 900;
+    padding: 5px 0;
+}
+
+/* 최근 레시피 */
+section {
+    padding: 0 80px;
+    margin-top: 70px;
+}
+
+#live .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+#live img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+#live h1{
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+#live div{
+    font-size: 18px;
+    font-weight: 900;
+    padding: 10px 0;
+}
+
+/* 푸터 */
+/* footer{
+    background-color:#f7f7f7;
+    font-family:'Helvetica',sans-serif;
+    padding-bottom:40px;
+    line-height: 50px;
+    color: rgb(56, 52, 52);
+  }
+  .wrapper {
+    padding: 0 160px;
+    margin: 0 auto;
+  }
+  .seperator{
+    display:flex;
+    padding-top:40px;
+    padding-bottom:40px;
+    border-bottom:1px solid #aaa;
+  }
+  .col-1{
+    flex-grow:1;
+    font-size:0.9em;
+  } */
+  #footer {
+    position: relative;
+}
+.footer_new {
+    border-top: #ddd solid 2px;
+    background: #fff;
+}
+.footer_new .footer-layer2 {
+    width: 1020px;
+    height: 100px;
+    margin: 30px auto;
+    font-size: 12px;
+    color: #555;
+    line-height: 150%;
+}
+article, aside, hgroup, header, footer, figure, figcaption, nav, section, time, mark, canvas, video, audio, details, summary {
+    display: block;
+}
+user agent stylesheet
+footer {
+    display: block;
+}
